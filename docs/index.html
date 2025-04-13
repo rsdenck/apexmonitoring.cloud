@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Monitoring Solutions - Soluções de Monitoramento e Observabilidade</title>
+    <meta name="description" content="Soluções de Monitoramento e Observabilidade para grandes ambientes de TI e Infraestrutura de Data Centers">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="general.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-white font-sans">
+    <!-- Navbar -->
+    <nav class="bg-gray-800 bg-opacity-90 backdrop-filter backdrop-blur-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <span class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">APEX</span>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="#home" class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-700 transition">Home</a>
+                            <a href="#services" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition">Serviços</a>
+                            <a href="#features" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition">Recursos</a>
+                            <a href="#about" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition">Sobre</a>
+                            <a href="#contact" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition">Contato</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <a href="#contact" class="px-4 py-2 rounded-md text-sm font-medium bg-gradient-to-r from-cyan-500 to-purple-600 text-white hover:from-cyan-600 hover:to-purple-700 transition">Demonstração</a>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Home</a>
+                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Serviços</a>
+                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Recursos</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Sobre</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Contato</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium bg-gradient-to-r from-cyan-500 to-purple-600 text-white hover:from-cyan-600 hover:to-purple-700">Demonstração</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                    <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Monitoramento Inteligente</span><br>
+                    para sua Infraestrutura
+                </h1>
+                <p class="text-lg text-gray-300 mb-8 max-w-lg">
+                    Soluções de Monitoramento e Observabilidade para grandes ambientes de TI e Infraestrutura de Data Centers, garantindo desempenho e disponibilidade.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#contact" class="px-6 py-3 rounded-md font-medium bg-gradient-to-r from-cyan-500 to-purple-600 text-white hover:from-cyan-600 hover:to-purple-700 transition text-center">Solicitar Demonstração</a>
+                    <a href="#services" class="px-6 py-3 rounded-md font-medium bg-gray-700 text-white hover:bg-gray-600 transition text-center">Conheça Nossos Serviços</a>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl opacity-20 blur-3xl"></div>
+                <div class="relative bg-gray-800 rounded-xl p-1 shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Dashboard de Monitoramento" class="rounded-lg w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-gray-800 bg-opacity-50 rounded-xl">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Nossos <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Serviços</span></h2>
+            <p class="text-gray-300 max-w-2xl mx-auto">Soluções completas para monitoramento de TI em qualquer escala</p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition group">
+                <div class="w-14 h-14 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-server text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 group-hover:text-cyan-400 transition">Monitoramento de Infraestrutura</h3>
+                <p class="text-gray-300">Monitoramento completo de servidores, redes, storage e dispositivos de data center com alertas em tempo real.</p>
+            </div>
+            <div class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition group">
+                <div class="w-14 h-14 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-chart-line text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 group-hover:text-cyan-400 transition">Performance de Aplicações</h3>
+                <p class="text-gray-300">Análise detalhada do desempenho de aplicações, identificando gargalos e otimizando a experiência do usuário.</p>
+            </div>
+            <div class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition group">
+                <div class="w-14 h-14 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-cloud text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 group-hover:text-cyan-400 transition">Monitoramento Cloud</h3>
+                <p class="text-gray-300">Soluções especializadas para ambientes cloud como AWS, Azure e Google Cloud com integração nativa.</p>
+            </div>
+            <div class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition group">
+                <div class="w-14 h-14 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-shield-alt text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 group-hover:text-cyan-400 transition">Segurança e Compliance</h3>
+                <p class="text-gray-300">Monitoramento de segurança e conformidade com regulamentações, garantindo a proteção dos seus dados.</p>
+            </div>
+            <div class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition group">
+                <div class="w-14 h-14 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-robot text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 group-hover:text-cyan-400 transition">Automação Inteligente</h3>
+                <p class="text-gray-300">Sistemas de automação que respondem a incidentes antes que afetem seus usuários finais.</p>
+            </div>
+            <div class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition group">
+                <div class="w-14 h-14 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-headset text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 group-hover:text-cyan-400 transition">Suporte 24/7</h3>
+                <p class="text-gray-300">Equipe especializada disponível 24 horas por dia, 7 dias por semana para garantir a continuidade do seu negócio.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Recursos <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Exclusivos</span></h2>
+            <p class="text-gray-300 max-w-2xl mx-auto">Tecnologia avançada para monitoramento proativo</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="mb-8">
+                    <div class="flex items-start mb-4">
+                        <div class="flex-shrink-0 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg p-2 mr-4">
+                            <i class="fas fa-bolt text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Alertas Inteligentes</h3>
+                            <p class="text-gray-300">Sistema de alertas que aprende com padrões históricos para reduzir falsos positivos e identificar problemas reais.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-8">
+                    <div class="flex items-start mb-4">
+                        <div class="flex-shrink-0 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg p-2 mr-4">
+                            <i class="fas fa-project-diagram text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Mapa de Dependências</h3>
+                            <p class="text-gray-300">Visualização completa das dependências entre serviços para rápida identificação do ponto de falha.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-8">
+                    <div class="flex items-start mb-4">
+                        <div class="flex-shrink-0 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg p-2 mr-4">
+                            <i class="fas fa-brain text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Análise Preditiva</h3>
+                            <p class="text-gray-300">Machine Learning para prever problemas antes que ocorram, baseado em padrões históricos e tendências.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl opacity-20 blur-3xl"></div>
+                <div class="relative bg-gray-800 rounded-xl p-1 shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Recursos de Monitoramento" class="rounded-lg w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-gray-800 bg-opacity-50 rounded-xl">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="relative">
+                <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl opacity-20 blur-3xl"></div>
+                <div class="relative bg-gray-800 rounded-xl p-1 shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Equipe Apex" class="rounded-lg w-full h-auto">
+                </div>
+            </div>
+            <div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Sobre a <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Apex Monitoring</span></h2>
+                <p class="text-gray-300 mb-6">
+                    A Apex Monitoring Solutions é líder em soluções de monitoramento e observabilidade para ambientes de TI críticos. Nossa equipe de especialistas combina anos de experiência com tecnologia de ponta para garantir que sua infraestrutura esteja sempre disponível e performando no seu máximo potencial.
+                </p>
+                <p class="text-gray-300 mb-6">
+                    Fundada em 2015, já atendemos mais de 200 clientes em diversos setores, desde fintechs até grandes data centers corporativos, sempre com foco em excelência e inovação.
+                </p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gray-800 rounded-lg p-4">
+                        <div class="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">200+</div>
+                        <div class="text-gray-300">Clientes Satisfeitos</div>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg p-4">
+                        <div class="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">24/7</div>
+                        <div class="text-gray-300">Monitoramento Contínuo</div>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg p-4">
+                        <div class="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">99.99%</div>
+                        <div class="text-gray-300">Disponibilidade Garantida</div>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg p-4">
+                        <div class="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">50+</div>
+                        <div class="text-gray-300">Tecnologias Integradas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Entre em <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Contato</span></h2>
+            <p class="text-gray-300 max-w-2xl mx-auto">Solicite uma demonstração ou tire suas dúvidas com nossa equipe</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-12">
+            <div>
+                <form id="contactForm" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Nome</label>
+                        <input type="text" id="name" name="name" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent" required>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent" required>
+                    </div>
+                    <div>
+                        <label for="company" class="block text-sm font-medium text-gray-300 mb-1">Empresa</label>
+                        <input type="text" id="company" name="company" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Mensagem</label>
+                        <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full px-6 py-3 rounded-md font-medium bg-gradient-to-r from-cyan-500 to-purple-600 text-white hover:from-cyan-600 hover:to-purple-700 transition">Enviar Mensagem</button>
+                </form>
+            </div>
+            <div class="space-y-6">
+                <div class="bg-gray-800 rounded-xl p-6">
+                    <h3 class="text-xl font-bold mb-4 text-cyan-400">Informações de Contato</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-purple-500 mt-1 mr-4"></i>
+                            <div>
+                                <h4 class="font-medium">Endereço</h4>
+                                <p class="text-gray-300">Av. Paulista, 1000 - São Paulo/SP</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone-alt text-purple-500 mt-1 mr-4"></i>
+                            <div>
+                                <h4 class="font-medium">Telefone</h4>
+                                <p class="text-gray-300">(11) 1234-5678</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-purple-500 mt-1 mr-4"></i>
+                            <div>
+                                <h4 class="font-medium">Email</h4>
+                                <p class="text-gray-300">contato@apexmonitoring.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-clock text-purple-500 mt-1 mr-4"></i>
+                            <div>
+                                <h4 class="font-medium">Horário de Atendimento</h4>
+                                <p class="text-gray-300">Segunda a Sexta: 8h às 18h</p>
+                                <p class="text-gray-300">Plantão 24/7 para clientes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-800 rounded-xl p-6">
+                    <h3 class="text-xl font-bold mb-4 text-cyan-400">Redes Sociais</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-cyan-500 transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-purple-500 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-blue-500 transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-red-500 transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">APEX</h3>
+                    <p class="text-gray-300 mb-4">Soluções de Monitoramento e Observabilidade para grandes ambientes de TI e Infraestrutura de Data Centers.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4 text-white">Serviços</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-cyan-400 transition">Monitoramento de Infraestrutura</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-cyan-400 transition">Performance de Aplicações</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-cyan-400 transition">Monitoramento Cloud</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-cyan-400 transition">Segurança e Compliance</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4 text-white">Recursos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-purple-400 transition">Alertas Inteligentes</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-purple-400 transition">Mapa de Dependências</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-purple-400 transition">Análise Preditiva</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-purple-400 transition">Integrações</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4 text-white">Contato</h3>
+                    <ul class="space-y-2">
+                        <li class="text-gray-300">Av. Paulista, 1000</li>
+                        <li class="text-gray-300">São Paulo/SP</li>
+                        <li class="text-gray-300">(11) 1234-5678</li>
+                        <li class="text-gray-300">contato@apexmonitoring.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2023 Apex Monitoring Solutions. Todos os direitos reservados.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition">Termos de Serviço</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">Política de Privacidade</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="forms.js"></script>
+</body>
+</html>
