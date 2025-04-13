@@ -1,116 +1,172 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* Custom Scrollbar */
+/* Variáveis de cor baseadas na logo - Tema Roxo/Neon */
+:root {
+  --apex-purple: #6a0dad;       /* Roxo principal da logo */
+  --apex-neon: #9d4edd;         /* Roxo neon brilhante */
+  --apex-dark: #1a0a2e;         /* Fundo escuro profundo */
+  --apex-darker: #0f051c;       /* Fundo mais escuro */
+  --apex-light: #e0aaff;        /* Destaques neon */
+  --apex-accent: #c77dff;       /* Roxo intermediário */
+}
+
+/* Estilos Base - Fundo com gradiente sutil */
+body {
+  background-color: var(--apex-dark);
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(106, 13, 173, 0.15) 0%, transparent 25%),
+    radial-gradient(circle at 90% 80%, rgba(157, 78, 221, 0.15) 0%, transparent 25%);
+  color: #f0e6ff;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+}
+
+/* Barra de rolagem personalizada */
 ::-webkit-scrollbar {
     width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #1a202c;
+    background: var(--apex-darker);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #4a5568;
+    background: var(--apex-purple);
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #718096;
+    background: var(--apex-neon);
+    box-shadow: 0 0 5px var(--apex-light);
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.fade-in {
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-/* Gradient Text Animation */
-.gradient-text-animate {
-    background-size: 200% auto;
-    background-clip: text;
-    -webkit-background-clip: text;
-    text-fill-color: transparent;
-    -webkit-text-fill-color: transparent;
-    animation: gradient 3s ease infinite;
-}
-
-@keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Neon Effects */
-.neon-shadow {
-    box-shadow: 0 0 10px rgba(34, 211, 238, 0.5), 
-                0 0 20px rgba(34, 211, 238, 0.3), 
-                0 0 30px rgba(34, 211, 238, 0.1);
-}
-
+/* Efeitos Neon Aprimorados */
 .neon-text {
-    text-shadow: 0 0 5px rgba(34, 211, 238, 0.8),
-                 0 0 10px rgba(34, 211, 238, 0.6);
-}
-
-.purple-neon-shadow {
-    box-shadow: 0 0 10px rgba(168, 85, 247, 0.5), 
-                0 0 20px rgba(168, 85, 247, 0.3), 
-                0 0 30px rgba(168, 85, 247, 0.1);
+    text-shadow: 
+        0 0 5px var(--apex-light),
+        0 0 10px var(--apex-neon),
+        0 0 20px rgba(157, 78, 221, 0.5);
+    color: white;
 }
 
 .purple-neon-text {
-    text-shadow: 0 0 5px rgba(168, 85, 247, 0.8),
-                 0 0 10px rgba(168, 85, 247, 0.6);
+    text-shadow: 
+        0 0 8px var(--apex-light),
+        0 0 15px var(--apex-neon),
+        0 0 25px rgba(157, 78, 221, 0.7);
 }
 
-/* Hover Effects */
+.neon-shadow {
+    box-shadow: 
+        0 0 10px var(--apex-neon),
+        0 0 20px rgba(157, 78, 221, 0.5);
+}
+
+.purple-neon-shadow {
+    box-shadow: 
+        0 0 15px var(--apex-neon),
+        0 0 30px rgba(157, 78, 221, 0.7);
+}
+
+/* Efeitos de hover com neon */
 .hover-grow {
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .hover-grow:hover {
     transform: scale(1.05);
+    box-shadow: 0 0 15px var(--apex-neon);
 }
 
-/* Section Transitions */
-section {
-    scroll-margin-top: 80px;
+/* Botões com efeito neon */
+.btn-neon {
+    background: linear-gradient(135deg, var(--apex-purple) 0%, var(--apex-neon) 100%);
+    border: none;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 0 10px var(--apex-neon),
+        0 0 20px rgba(157, 78, 221, 0.3);
 }
 
-/* Form Input Focus */
+.btn-neon:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 0 15px var(--apex-neon),
+        0 0 30px rgba(157, 78, 221, 0.6);
+}
+
+/* Cards com borda neon */
+.card-neon {
+    background: rgba(26, 10, 46, 0.7);
+    border: 1px solid var(--apex-accent);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.card-neon:hover {
+    border-color: var(--apex-light);
+    box-shadow: 0 0 15px rgba(157, 78, 221, 0.5);
+}
+
+/* Animação pulsante para destaques */
+@keyframes pulse-neon {
+    0% { box-shadow: 0 0 5px var(--apex-neon); }
+    50% { box-shadow: 0 0 20px var(--apex-neon); }
+    100% { box-shadow: 0 0 5px var(--apex-neon); }
+}
+
+.highlight-pulse {
+    animation: pulse-neon 3s infinite;
+}
+
+/* Formulários com estilo neon */
 input:focus, textarea:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.3);
+    border-color: var(--apex-light);
+    box-shadow: 
+        0 0 5px var(--apex-neon),
+        0 0 10px rgba(157, 78, 221, 0.3);
 }
 
-/* Custom Backgrounds */
-.bg-grid-pattern {
-    background-image: radial-gradient(circle, rgba(56, 178, 172, 0.1) 1px, transparent 1px);
-    background-size: 20px 20px;
+/* Gradientes animados */
+.gradient-text-animate {
+    background: linear-gradient(90deg, var(--apex-purple), var(--apex-neon), var(--apex-accent), var(--apex-purple));
+    background-size: 300% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: gradient 4s linear infinite;
 }
 
-/* Pulse Animation */
-@keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
+@keyframes gradient {
+    0% { background-position: 0% center; }
+    100% { background-position: 100% center; }
 }
 
-.pulse {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* Responsive Adjustments */
+/* Responsividade */
 @media (max-width: 768px) {
-    .hero-text {
-        font-size: 2.5rem;
+    body {
+        background-image: none;
+        background-color: var(--apex-darker);
     }
     
-    .section-padding {
-        padding: 3rem 1.5rem;
+    .neon-text {
+        text-shadow: 
+            0 0 3px var(--apex-light),
+            0 0 6px var(--apex-neon);
     }
+    
+    .btn-neon {
+        padding: 0.75rem 1.5rem;
+    }
+}
+
+/* Efeito de vidro para elementos flutuantes */
+.glass-effect {
+    background: rgba(26, 10, 46, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(157, 78, 221, 0.2);
 }
