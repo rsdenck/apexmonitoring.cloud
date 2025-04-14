@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Dependências | Apex Monitoring</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="../general.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .dependency-card {
+            background: linear-gradient(145deg, rgba(26, 32, 44, 0.8), rgba(17, 24, 39, 0.8));
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .dependency-card:hover {
+            border-color: rgba(34, 211, 238, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -5px rgba(157, 78, 221, 0.3);
+        }
+        .dependency-icon {
+            background: linear-gradient(135deg, #9d4edd, #22d3ee);
+            box-shadow: 0 4px 15px rgba(157, 78, 221, 0.4);
+        }
+        .dependency-badge {
+            background: rgba(157, 78, 221, 0.1);
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+        .map-container {
+            height: 500px;
+            background: rgba(31, 41, 55, 0.7);
+            border-radius: 16px;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .node {
+            position: absolute;
+            border-radius: 8px;
+            padding: 12px;
+            min-width: 120px;
+            text-align: center;
+            font-size: 12px;
+            z-index: 10;
+        }
+        .node-app {
+            background: rgba(76, 29, 149, 0.8);
+            border: 1px solid #9d4edd;
+        }
+        .node-db {
+            background: rgba(34, 211, 238, 0.2);
+            border: 1px solid #22d3ee;
+        }
+        .node-api {
+            background: rgba(244, 114, 182, 0.2);
+            border: 1px solid #f472b6;
+        }
+        .node-network {
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid #10b981;
+        }
+        .connection {
+            position: absolute;
+            height: 2px;
+            background: rgba(157, 78, 221, 0.6);
+            transform-origin: 0 0;
+            z-index: 5;
+        }
+        .connection-critical {
+            background: rgba(239, 68, 68, 0.8);
+        }
+        .connection-warning {
+            background: rgba(245, 158, 11, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+    <!-- Navbar -->
+    <nav class="bg-gray-800 bg-opacity-90 backdrop-filter backdrop-blur-lg fixed w-full z-50 border-b border-purple-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <img src="../assets/logo-apex.svg" alt="Apex Monitoring" class="h-8 mr-2">
+                        <span class="text-2xl font-bold bg-gradient-to-r from-purple-500 to-cyan-400 bg-clip-text text-transparent neon-text hidden sm:inline">MONITORING</span>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="../index.html" class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-purple-900/30 transition hover:text-cyan-300">Home</a>
+                            <a href="../index.html#services" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-cyan-300 hover:bg-purple-900/30 transition">Serviços</a>
+                            <a href="../index.html#contact" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-cyan-300 hover:bg-purple-900/30 transition">Contato</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="../index.html#contact" class="hidden md:block px-4 py-2 rounded-md text-sm font-medium bg-gradient-to-r from-purple-600 to-cyan-500 text-white hover:from-purple-700 hover:to-cyan-600 transition shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40">Demonstração</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                <span class="bg-gradient-to-r from-purple-500 to-cyan-400 bg-clip-text text-transparent neon-text">Mapa de Dependências</span>
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                Visualização completa das relações entre sistemas e impactos em cadeia
+            </p>
+        </div>
+    </section>
+
+    <!-- Mapa Interativo -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="mb-8">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-bold text-cyan-400">Topologia do Ambiente</h2>
+                <div class="flex space-x-2">
+                    <button class="px-3 py-1 rounded-md text-xs bg-gray-700 hover:bg-gray-600 transition">Aplicações</button>
+                    <button class="px-3 py-1 rounded-md text-xs bg-gray-700 hover:bg-gray-600 transition">Redes</button>
+                    <button class="px-3 py-1 rounded-md text-xs bg-gray-700 hover:bg-gray-600 transition">Dados</button>
+                    <button class="px-3 py-1 rounded-md text-xs bg-purple-600 hover:bg-purple-700 transition">Tudo</button>
+                </div>
+            </div>
+            
+            <div class="map-container">
+                <!-- Exemplo de nós e conexões (seria gerado dinamicamente via JS na prática) -->
+                <div class="node node-app" style="top: 20%; left: 10%;">
+                    <div class="dependency-icon w-8 h-8 rounded-lg flex items-center justify-center mx-auto mb-1">
+                        <i class="fas fa-shopping-cart text-sm"></i>
+                    </div>
+                    <span class="font-medium">E-Commerce</span>
+                    <div class="text-xs text-gray-300 mt-1">v2.3.1</div>
+                </div>
+                
+                <div class="node node-api" style="top: 40%; left: 30%;">
+                    <div class="dependency-icon w-8 h-8 rounded-lg flex items-center justify-center mx-auto mb-1">
+                        <i class="fas fa-exchange-alt text-sm"></i>
+                    </div>
+                    <span class="font-medium">API Gateway</span>
+                    <div class="text-xs text-gray-300 mt-1">5 req/s</div>
+                </div>
+                
+                <div class="node node-db" style="top: 60%; left: 20%;">
+                    <div class="dependency-icon w-8 h-8 rounded-lg flex items-center justify-center mx-auto mb-1">
+                        <i class="fas fa-database text-sm"></i>
+                    </div>
+                    <span class="font-medium">MySQL Cluster</span>
+                    <div class="text-xs text-gray-300 mt-1">Primary</div>
+                </div>
+                
+                <div class="node node-network" style="top: 30%; left: 70%;">
+                    <div class="dependency-icon w-8 h-8 rounded-lg flex items-center justify-center mx-auto mb-1">
+                        <i class="fas fa-network-wired text-sm"></i>
+                    </div>
+                    <span class="font-medium">Load Balancer</span>
+                    <div class="text-xs text-gray-300 mt-1">HAProxy</div>
+                </div>
+                
+                <!-- Conexões -->
+                <div class="connection" style="width: 120px; top: 28%; left: 22%; transform: rotate(20deg);"></div>
+                <div class="connection" style="width: 150px; top: 45%; left: 42%; transform: rotate(-15deg);"></div>
+                <div class="connection connection-critical" style="width: 200px; top: 35%; left: 42%; transform: rotate(45deg);"></div>
+                <div class="connection connection-warning" style="width: 180px; top: 50%; left: 30%; transform: rotate(-30deg);"></div>
+            </div>
+            
+            <div class="flex justify-center mt-4 space-x-4">
+                <div class="flex items-center">
+                    <div class="w-3 h-3 rounded-full bg-purple-500 mr-2"></div>
+                    <span class="text-xs">Aplicação</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-3 h-3 rounded-full bg-cyan-400 mr-2"></div>
+                    <span class="text-xs">Banco de Dados</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-3 h-3 rounded-full bg-pink-400 mr-2"></div>
+                    <span class="text-xs">API</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-3 h-3 rounded-full bg-emerald-400 mr-2"></div>
+                    <span class="text-xs">Rede</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
+                    <span class="text-xs">Crítico</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
+                    <span class="text-xs">Alerta</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recursos de Mapeamento -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Descoberta Automática -->
+            <div class="dependency-card rounded-xl p-6">
+                <div class="flex items-start justify-between">
+                    <div class="dependency-icon w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-robot text-xl text-white"></i>
+                    </div>
+                    <span class="dependency-badge text-xs px-3 py-1 rounded-full">IA</span>
+                </div>
+                <h3 class="text-xl font-bold my-4 text-purple-400">Descoberta Automática</h3>
+                <ul class="text-gray-300 space-y-2 text-sm">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Mapeamento de dependências em tempo real</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Reconhecimento de padrões de tráfego</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Atualização contínua</span>
+                    </li>
+                </ul>
+                <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                    <span class="text-xs text-purple-300">Machine Learning</span>
+                    <span class="text-xs bg-gray-700 px-2 py-1 rounded">v3.1+</span>
+                </div>
+            </div>
+
+            <!-- Análise de Impacto -->
+            <div class="dependency-card rounded-xl p-6">
+                <div class="flex items-start justify-between">
+                    <div class="dependency-icon w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-project-diagram text-xl text-white"></i>
+                    </div>
+                    <span class="dependency-badge text-xs px-3 py-1 rounded-full">IMPACTO</span>
+                </div>
+                <h3 class="text-xl font-bold my-4 text-purple-400">Análise de Impacto</h3>
+                <ul class="text-gray-300 space-y-2 text-sm">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Simulação de falhas em componentes</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Previsão de efeito cascata</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Priorização de mitigação</span>
+                    </li>
+                </ul>
+                <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                    <span class="text-xs text-purple-300">Business Risk</span>
+                    <span class="text-xs bg-gray-700 px-2 py-1 rounded">GPT-4</span>
+                </div>
+            </div>
+
+            <!-- Documentação Viva -->
+            <div class="dependency-card rounded-xl p-6">
+                <div class="flex items-start justify-between">
+                    <div class="dependency-icon w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-book-medical text-xl text-white"></i>
+                    </div>
+                    <span class="dependency-badge text-xs px-3 py-1 rounded-full">DOCS</span>
+                </div>
+                <h3 class="text-xl font-bold my-4 text-purple-400">Documentação Viva</h3>
+                <ul class="text-gray-300 space-y-2 text-sm">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Exportação para Confluence/Notion</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Geração automática de runbooks</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Versionamento de mudanças</span>
+                    </li>
+                </ul>
+                <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                    <span class="text-xs text-purple-300">Markdown/PDF</span>
+                    <span class="text-xs bg-gray-700 px-2 py-1 rounded">v2.5+</span>
+                </div>
+            </div>
+
+            <!-- Visualização em Camadas -->
+            <div class="dependency-card rounded-xl p-6">
+                <div class="flex items-start justify-between">
+                    <div class="dependency-icon w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-layer-group text-xl text-white"></i>
+                    </div>
+                    <span class="dependency-badge text-xs px-3 py-1 rounded-full">3D</span>
+                </div>
+                <h3 class="text-xl font-bold my-4 text-purple-400">Visualização em Camadas</h3>
+                <ul class="text-gray-300 space-y-2 text-sm">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Navegação por camadas (app, infra, rede)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Filtros por business unit</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Modo "arquitetura limpa"</span>
+                    </li>
+                </ul>
+                <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                    <span class="text-xs text-purple-300">WebGL</span>
+                    <span class="text-xs bg-gray-700 px-2 py-1 rounded">3D</span>
+                </div>
+            </div>
+
+            <!-- Change Tracking -->
+            <div class="dependency-card rounded-xl p-6">
+                <div class="flex items-start justify-between">
+                    <div class="dependency-icon w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-history text-xl text-white"></i>
+                    </div>
+                    <span class="dependency-badge text-xs px-3 py-1 rounded-full">AUDIT</span>
+                </div>
+                <h3 class="text-xl font-bold my-4 text-purple-400">Change Tracking</h3>
+                <ul class="text-gray-300 space-y-2 text-sm">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Histórico de alterações na topologia</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Diff entre versões</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Integração com CMDB</span>
+                    </li>
+                </ul>
+                <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                    <span class="text-xs text-purple-300">Versionamento</span>
+                    <span class="text-xs bg-gray-700 px-2 py-1 rounded">Git-like</span>
+                </div>
+            </div>
+
+            <!-- API de Integração -->
+            <div class="dependency-card rounded-xl p-6">
+                <div class="flex items-start justify-between">
+                    <div class="dependency-icon w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-code text-xl text-white"></i>
+                    </div>
+                    <span class="dependency-badge text-xs px-3 py-1 rounded-full">DEV</span>
+                </div>
+                <h3 class="text-xl font-bold my-4 text-purple-400">API de Integração</h3>
+                <ul class="text-gray-300 space-y-2 text-sm">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Consulta programática do mapa</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Webhooks para mudanças</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Formato GraphQL/JSON</span>
+                    </li>
+                </ul>
+                <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                    <span class="text-xs text-purple-300">RESTful</span>
+                    <span class="text-xs bg-gray-700 px-2 py-1 rounded">v2</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefícios -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-gray-800/50 rounded-xl border border-gray-700">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4 text-cyan-400 neon-text">Benefícios do Mapeamento de Dependências</h2>
+            <p class="text-gray-300 max-w-3xl mx-auto">Como esta visão transforma sua operação</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="text-center p-6">
+                <div class="dependency-icon w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-clock text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-purple-400">MTTR Reduzido</h3>
+                <p class="text-gray-300">Identificação 80% mais rápida da causa raiz em incidentes complexos</p>
+            </div>
+            
+            <div class="text-center p-6">
+                <div class="dependency-icon w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-shield-alt text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-purple-400">Resiliência</h3>
+                <p class="text-gray-300">Identificação proativa de pontos únicos de falha (SPOFs)</p>
+            </div>
+            
+            <div class="text-center p-6">
+                <div class="dependency-icon w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-money-bill-wave text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-purple-400">Otimização</h3>
+                <p class="text-gray-300">Redução de 30% em recursos subutilizados</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Especializado -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
+        <div class="bg-gradient-to-r from-purple-900/40 to-cyan-900/40 rounded-2xl p-12 border border-gray-700">
+            <h2 class="text-3xl font-bold mb-6">Descubra o Que Você Não Sabe Sobre Seu Próprio Ambiente</h2>
+            <p class="text-gray-300 max-w-2xl mx-auto mb-8">Nossa inteligência artificial revela conexões críticas que passam despercebidas</p>
+            <a href="../index.html#contact" class="inline-block px-8 py-4 rounded-md font-medium bg-gradient-to-r from-purple-600 to-cyan-500 text-white hover:from-purple-700 hover:to-cyan-600 transition shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 text-lg">
+                Mapear Meu Ambiente
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-12 px-4 sm:px-6 lg:px-8 border-t border-purple-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <img src="../assets/logo-apex.svg" alt="Apex Monitoring" class="h-8 mb-4">
+                    <p class="text-gray-300 text-sm">Soluções avançadas de monitoramento para infraestruturas críticas.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-purple-300">Serviços</h3>
+                    <ul class="space-y-2">
+                        <li><a href="performance-aplicacoes.html" class="text-gray-300 hover:text-cyan-300 text-sm transition">Performance de Aplicações</a></li>
+                        <li><a href="alertas-inteligentes.html" class="text-gray-300 hover:text-cyan-300 text-sm transition">Alertas Inteligentes</a></li>
+                        <li><a href="mapa-dependencias.html" class="text-gray-300 hover:text-cyan-300 text-sm transition">Mapa de Dependências</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-purple-300">Links Rápidos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="../index.html" class="text-gray-300 hover:text-cyan-300 text-sm transition">Home</a></li>
+                        <li><a href="../index.html#services" class="text-gray-300 hover:text-cyan-300 text-sm transition">Serviços</a></li>
+                        <li><a href="../index.html#contact" class="text-gray-300 hover:text-cyan-300 text-sm transition">Contato</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-purple-300">Contato</h3>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li class="flex items-center"><i class="fas fa-envelope mr-2 text-cyan-400"></i> contato@apexmonitoring.com</li>
+                        <li class="flex items-center"><i class="fas fa-phone-alt mr-2 text-cyan-400"></i>(47) 93618-0377</li>
+                        <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-cyan-400"></i>Brusque, Brasil</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2023 Apex Monitoring. Todos os direitos reservados.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-cyan-300 transition"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-cyan-300 transition"><i class="fab fa-github"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-cyan-300 transition"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Exemplo simplificado de como seria implementada a lógica do mapa
+        document.addEventListener('DOMContentLoaded', function() {
+            // Em uma implementação real, isso seria gerado dinamicamente
+            // com dados da API e uma biblioteca como D3.js ou Vis.js
+            console.log('Mapa de dependências carregado');
+            
+            // Simulação de tooltip para os nós
+            const nodes = document.querySelectorAll('.node');
+            nodes.forEach(node => {
+                node.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                    this.style.zIndex = '20';
+                });
+                node.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.zIndex = '10';
+                });
+            });
+        });
+    </script>
+    <script src="../forms.js"></script>
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise Preditiva | Apex Monitoring</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="../general.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .ai-card {
+            background: linear-gradient(145deg, rgba(26, 32, 44, 0.8), rgba(17, 24, 39, 0.8));
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .ai-card:hover {
+            border-color: rgba(34, 211, 238, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -5px rgba(157, 78, 221, 0.3);
+        }
+        .ai-icon {
+            background: linear-gradient(135deg, #9d4edd, #22d3ee);
+            box-shadow: 0 4px 15px rgba(157, 78, 221, 0.4);
+        }
+        .ai-badge {
+            background: rgba(157, 78, 221, 0.1);
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(34, 211, 238, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+    <!-- Navbar -->
+    <nav class="bg-gray-800 bg-opacity-90 backdrop-filter backdrop-blur-lg fixed w-full z-50 border-b border-purple-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <img src="../assets/logo-apex.svg" alt="Apex Monitoring" class="h-8 mr-2">
+                        <span class="text-2xl font-bold bg-gradient-to-r from-purple-500 to-cyan-400 bg-clip-text text-transparent neon-text hidden sm:inline">MONITORING</span>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="../index.html" class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-purple-900/30 transition hover:text-cyan-300">Home</a>
+                            <a href="../index.html#services" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-cyan-300 hover:bg-purple-900/30 transition">Serviços</a>
+                            <a href="../index.html#contact" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-cyan-300 hover:bg-purple-900/30 transition">Contato</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="../index.html#contact" class="hidden md:block px-4 py-2 rounded-md text-sm font-medium bg-gradient-to-r from-purple-600 to-cyan-500 text-white hover:from-purple-700 hover:to-cyan-600 transition shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40">Demonstração</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                <span class="bg-gradient-to-r from-purple-500 to-cyan-400 bg-clip-text text-transparent neon-text">Análise Preditiva</span>
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                Inteligência Artificial para antecipar falhas e otimizar sua infraestrutura
+            </p>
+        </div>
+    </section>
+
+    <!-- Plataformas de IA -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Detecção de Anomalias -->
+            <div class="ai-card rounded-xl p-6">
+                <div class="flex items-start justify-between">
+                    <div class="ai-icon w-12 h-12 rounded-lg flex items-center justify-center mr-4 pulse-animation">
+                        <i class="fas fa-brain text-xl text-white"></i>
+                    </div>
+                    <span class="ai-badge text-xs px-3 py-1 rounded-full">ML</span>
+                </div>
+                <h3 class="text-xl font-bold my-4 text-purple-400">Detecção de Anomalias</h3>
+                <ul class="text-gray-300 space-y-2 text-sm">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Modelos de séries temporais</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Alertas automáticos</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Baseline adaptativo</span>
+                    </li>
+                </ul>
+                <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                    <span class="text-xs text-purple-300">TensorFlow</span>
+                    <span class="text-xs bg-gray-700 px-2 py-1 rounded">v2.0+</span>
+                </div>
+            </div>
+
+            <!-- Previsão de Capacidade -->
+            <div class="ai-card rounded-xl p-6">
+                <div class="flex items-start justify-between">
+                    <div class="ai-icon w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-chart-line text-xl text-white"></i>
+                    </div>
+                    <span class="ai-badge text-xs px-3 py-1 rounded-full">AI</span>
+                </div>
+                <h3 class="text-xl font-bold my-4 text-purple-400">Previsão de Capacidade</h3>
+                <ul class="text-gray-300 space-y-2 text-sm">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Forecasting de recursos</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Simulações de cenários</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Recomendações de scaling</span>
+                    </li>
+                </ul>
+                <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                    <span class="text-xs text-purple-300">Prophet</span>
+                    <span class="text-xs bg-gray-700 px-2 py-1 rounded">ARIMA</span>
+                </div>
+            </div>
+
+            <!-- Root Cause Analysis -->
+            <div class="ai-card rounded-xl p-6">
+                <div class="flex items-start justify-between">
+                    <div class="ai-icon w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-search-plus text-xl text-white"></i>
+                    </div>
+                    <span class="ai-badge text-xs px-3 py-1 rounded-full">NLP</span>
+                </div>
+                <h3 class="text-xl font-bold my-4 text-purple-400">Análise de Causa Raiz</h3>
+                <ul class="text-gray-300 space-y-2 text-sm">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Correlação automática</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>GPT-4 para análise de logs</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Grafos de dependência</span>
+                    </li>
+                </ul>
+                <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                    <span class="text-xs text-purple-300">LLM</span>
+                    <span class="text-xs bg-gray-700 px-2 py-1 rounded">GPT-4</span>
+                </div>
+            </div>
+
+            <!-- Otimização de Custos -->
+            <div class="ai-card rounded-xl p-6">
+                <div class="flex items-start justify-between">
+                    <div class="ai-icon w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-coins text-xl text-white"></i>
+                    </div>
+                    <span class="ai-badge text-xs px-3 py-1 rounded-full">CLOUD</span>
+                </div>
+                <h3 class="text-xl font-bold my-4 text-purple-400">Otimização de Custos</h3>
+                <ul class="text-gray-300 space-y-2 text-sm">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Recomendações de right-sizing</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Previsão de gastos</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Benchmarking</span>
+                    </li>
+                </ul>
+                <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                    <span class="text-xs text-purple-300">AWS/GCP/Azure</span>
+                    <span class="text-xs bg-gray-700 px-2 py-1 rounded">ML</span>
+                </div>
+            </div>
+
+            <!-- ChatOps -->
+            <div class="ai-card rounded-xl p-6">
+                <div class="flex items-start justify-between">
+                    <div class="ai-icon w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-robot text-xl text-white"></i>
+                    </div>
+                    <span class="ai-badge text-xs px-3 py-1 rounded-full">CHATBOT</span>
+                </div>
+                <h3 class="text-xl font-bold my-4 text-purple-400">Assistente Virtual</h3>
+                <ul class="text-gray-300 space-y-2 text-sm">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Natural Language Processing</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Slack/MS Teams integrado</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Automação por comando de voz</span>
+                    </li>
+                </ul>
+                <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                    <span class="text-xs text-purple-300">GPT-4</span>
+                    <span class="text-xs bg-gray-700 px-2 py-1 rounded">AI</span>
+                </div>
+            </div>
+
+            <!-- Auto-Remediation -->
+            <div class="ai-card rounded-xl p-6">
+                <div class="flex items-start justify-between">
+                    <div class="ai-icon w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-magic text-xl text-white"></i>
+                    </div>
+                    <span class="ai-badge text-xs px-3 py-1 rounded-full">AUTOMAÇÃO</span>
+                </div>
+                <h3 class="text-xl font-bold my-4 text-purple-400">Auto-Remediation</h3>
+                <ul class="text-gray-300 space-y-2 text-sm">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Playbooks inteligentes</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Ansible/Terraform</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Aprovação humana opcional</span>
+                    </li>
+                </ul>
+                <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                    <span class="text-xs text-purple-300">SOAR</span>
+                    <span class="text-xs bg-gray-700 px-2 py-1 rounded">v1.0+</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Arquitetura de IA -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-gray-800/50 rounded-xl border border-gray-700 mt-12">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4 text-cyan-400 neon-text">Arquitetura de Inteligência Artificial</h2>
+            <p class="text-gray-300 max-w-3xl mx-auto">Como nossos modelos processam seus dados</p>
+        </div>
+        
+        <div class="feature-grid">
+            <div class="p-4">
+                <div class="flex items-center mb-3">
+                    <div class="ai-icon w-10 h-10 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-database text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold">Data Pipeline</h3>
+                </div>
+                <p class="text-gray-300 text-sm">Coleta e normalização de métricas em tempo real</p>
+            </div>
+            
+            <div class="p-4">
+                <div class="flex items-center mb-3">
+                    <div class="ai-icon w-10 h-10 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-brain text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold">Model Training</h3>
+                </div>
+                <p class="text-gray-300 text-sm">Aprendizado contínuo com novos dados</p>
+            </div>
+            
+            <div class="p-4">
+                <div class="flex items-center mb-3">
+                    <div class="ai-icon w-10 h-10 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-chart-bar text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold">Anomaly Detection</h3>
+                </div>
+                <p class="text-gray-300 text-sm">Identificação de desvios com 99.7% de precisão</p>
+            </div>
+            
+            <div class="p-4">
+                <div class="flex items-center mb-3">
+                    <div class="ai-icon w-10 h-10 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-project-diagram text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold">Causal Analysis</h3>
+                </div>
+                <p class="text-gray-300 text-sm">Grafos de relacionamento entre eventos</p>
+            </div>
+            
+            <div class="p-4">
+                <div class="flex items-center mb-3">
+                    <div class="ai-icon w-10 h-10 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-robot text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold">NL Generation</h3>
+                </div>
+                <p class="text-gray-300 text-sm">Explicações em linguagem natural (GPT-4)</p>
+            </div>
+            
+            <div class="p-4">
+                <div class="flex items-center mb-3">
+                    <div class="ai-icon w-10 h-10 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-cogs text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold">Action Engine</h3>
+                </div>
+                <p class="text-gray-300 text-sm">Execução de playbooks de correção</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Métricas de Performance -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4 text-purple-400 neon-text">Precisão dos Modelos</h2>
+            <p class="text-gray-300 max-w-3xl mx-auto">Resultados comprovados em ambientes de produção</p>
+        </div>
+        <div class="grid md:grid-cols-4 gap-6">
+            <div class="text-center p-6 bg-gray-800/50 rounded-xl border border-gray-700">
+                <div class="text-4xl font-bold mb-3 text-cyan-400">99.7%</div>
+                <p class="text-gray-300 text-sm">Detecção de Anomalias</p>
+            </div>
+            <div class="text-center p-6 bg-gray-800/50 rounded-xl border border-gray-700">
+                <div class="text-4xl font-bold mb-3 text-purple-400">94%</div>
+                <p class="text-gray-300 text-sm">Previsão de Capacidade</p>
+            </div>
+            <div class="text-center p-6 bg-gray-800/50 rounded-xl border border-gray-700">
+                <div class="text-4xl font-bold mb-3 text-cyan-400">85%</div>
+                <p class="text-gray-300 text-sm">Auto-Remediation</p>
+            </div>
+            <div class="text-center p-6 bg-gray-800/50 rounded-xl border border-gray-700">
+                <div class="text-4xl font-bold mb-3 text-purple-400">30%</div>
+                <p class="text-gray-300 text-sm">Redução de Custos</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA IA -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
+        <div class="bg-gradient-to-r from-purple-900/40 to-cyan-900/40 rounded-2xl p-12 border border-gray-700">
+            <h2 class="text-3xl font-bold mb-6">Leve Sua Infraestrutura para o Próximo Nível</h2>
+            <p class="text-gray-300 max-w-2xl mx-auto mb-8">Nossos modelos de IA aprendem com seu ambiente para entregar insights impossíveis de obver manualmente</p>
+            <a href="../index.html#contact" class="inline-block px-8 py-4 rounded-md font-medium bg-gradient-to-r from-purple-600 to-cyan-500 text-white hover:from-purple-700 hover:to-cyan-600 transition shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 text-lg">
+                Agendar Demonstração
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-12 px-4 sm:px-6 lg:px-8 border-t border-purple-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <img src="../assets/logo-apex.svg" alt="Apex Monitoring" class="h-8 mb-4">
+                    <p class="text-gray-300 text-sm">Soluções avançadas de monitoramento para infraestruturas críticas.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-purple-300">Serviços</h3>
+                    <ul class="space-y-2">
+                        <li><a href="performance-aplicacoes.html" class="text-gray-300 hover:text-cyan-300 text-sm transition">Performance de Aplicações</a></li>
+                        <li><a href="monitoramento-cloud.html" class="text-gray-300 hover:text-cyan-300 text-sm transition">Monitoramento Cloud</a></li>
+                        <li><a href="analise-preditiva.html" class="text-gray-300 hover:text-cyan-300 text-sm transition">Análise Preditiva</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-purple-300">Links Rápidos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="../index.html" class="text-gray-300 hover:text-cyan-300 text-sm transition">Home</a></li>
+                        <li><a href="../index.html#services" class="text-gray-300 hover:text-cyan-300 text-sm transition">Serviços</a></li>
+                        <li><a href="../index.html#contact" class="text-gray-300 hover:text-cyan-300 text-sm transition">Contato</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-purple-300">Contato</h3>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li class="flex items-center"><i class="fas fa-envelope mr-2 text-cyan-400"></i> contato@apexmonitoring.com</li>
+                        <li class="flex items-center"><i class="fas fa-phone-alt mr-2 text-cyan-400"></i>(47) 93618-0377</li>
+                        <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-cyan-400"></i>Brusque, Brasil</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2023 Apex Monitoring. Todos os direitos reservados.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-cyan-300 transition"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-cyan-300 transition"><i class="fab fa-github"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-cyan-300 transition"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../forms.js"></script>
+</body>
+</html>
