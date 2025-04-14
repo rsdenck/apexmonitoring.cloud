@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoramento de Infraestrutura | Apex Monitoring</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="../general.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .infra-card {
+            background: linear-gradient(145deg, rgba(26, 32, 44, 0.8), rgba(17, 24, 39, 0.8));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(157, 78, 221, 0.3);
+            transition: all 0.4s ease;
+        }
+        .infra-card:hover {
+            border-color: rgba(34, 211, 238, 0.6);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(157, 78, 221, 0.2);
+        }
+        .infra-icon {
+            background: linear-gradient(135deg, #9d4edd, #22d3ee);
+            box-shadow: 0 4px 15px rgba(157, 78, 221, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+    <!-- Navbar -->
+    <nav class="bg-gray-800 bg-opacity-90 backdrop-filter backdrop-blur-lg fixed w-full z-50 border-b border-purple-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <img src="../assets/logo-apex.svg" alt="Apex Monitoring" class="h-8 mr-2">
+                        <span class="text-2xl font-bold bg-gradient-to-r from-purple-500 to-cyan-400 bg-clip-text text-transparent neon-text hidden sm:inline">MONITORING</span>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="../index.html" class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-purple-900/30 transition hover:text-cyan-300">Home</a>
+                            <a href="../index.html#services" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-cyan-300 hover:bg-purple-900/30 transition">Serviços</a>
+                            <a href="../index.html#features" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-cyan-300 hover:bg-purple-900/30 transition">Recursos</a>
+                            <a href="../index.html#contact" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-cyan-300 hover:bg-purple-900/30 transition">Contato</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="../index.html#contact" class="hidden md:block px-4 py-2 rounded-md text-sm font-medium bg-gradient-to-r from-purple-600 to-cyan-500 text-white hover:from-purple-700 hover:to-cyan-600 transition shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40">Demonstração</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                <span class="bg-gradient-to-r from-purple-500 to-cyan-400 bg-clip-text text-transparent neon-text">Monitoramento de Infraestrutura</span>
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                Solução completa para monitoramento de todos os componentes críticos da sua infraestrutura de TI
+            </p>
+        </div>
+    </section>
+
+    <!-- Blocos de Monitoramento -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Rede -->
+            <div class="infra-card rounded-xl p-6">
+                <div class="infra-icon w-14 h-14 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-network-wired text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-cyan-400">Monitoramento de Redes</h3>
+                <ul class="text-gray-300 space-y-2 mb-4">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                        <span>Disponibilidade de switches e roteadores</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                        <span>Análise de tráfego e largura de banda</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                        <span>Detecção de anomalias em tempo real</span>
+                    </li>
+                </ul>
+                <div class="mt-4 text-sm text-purple-400 font-medium">
+                    <i class="fas fa-chart-line mr-2"></i>Latência: < 5ms | Uptime: 99.99%
+                </div>
+            </div>
+
+            <!-- Servidores Linux -->
+            <div class="infra-card rounded-xl p-6">
+                <div class="infra-icon w-14 h-14 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fab fa-linux text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-cyan-400">Servidores Linux</h3>
+                <ul class="text-gray-300 space-y-2 mb-4">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                        <span>Monitoramento de processos e serviços</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                        <span>Análise de logs centralizada</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                        <span>Gestão de pacotes e atualizações</span>
+                    </li>
+                </ul>
+                <div class="mt-4 text-sm text-purple-400 font-medium">
+                    <i class="fas fa-microchip mr-2"></i>Suporte: Ubuntu, CentOS, RedHat
+                </div>
+            </div>
+
+            <!-- Servidores Windows -->
+            <div class="infra-card rounded-xl p-6">
+                <div class="infra-icon w-14 h-14 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fab fa-windows text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-cyan-400">Servidores Windows</h3>
+                <ul class="text-gray-300 space-y-2 mb-4">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                        <span>Monitoramento de serviços Windows</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                        <span>Event Viewer integrado</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                        <span>Verificação de atualizações críticas</span>
+                    </li>
+                </ul>
+                <div class="mt-4 text-sm text-purple-400 font-medium">
+                    <i class="fas fa-server mr-2"></i>Versões: 2012R2 até 2022
+                </div>
+            </div>
+
+            <!-- Servidores Físicos -->
+            <div class="infra-card rounded-xl p-6">
+                <div class="infra-icon w-14 h-14 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-server text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-cyan-400">Servidores Físicos</h3>
+                <ul class="text-gray-300 space-y-2 mb-4">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                        <span>Monitoramento hardware (HD, RAM, CPU)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                        <span>Temperatura e ventilação</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                        <span>Previsão de falhas (SMART, logs BMC)</span>
+                    </li>
+                </ul>
+                <div class="mt-4 text-sm text-purple-400 font-medium">
+                    <i class="fas fa-hard-hat mr-2"></i>Fabricantes: Dell, HP, Lenovo
+                </div>
+            </div>
+
+            <!-- Nobreaks -->
+            <div class="infra-card rounded-xl p-6">
+                <div class="infra-icon w-14 h-14 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-battery-three-quarters text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-cyan-400">Nobreaks</h3>
+                <ul class="text-gray-300 space-y-2 mb-4">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                        <span>Status de carga e autonomia</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                        <span>Qualidade da energia elétrica</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                        <span>Alertas de falha ou substituição</span>
+                    </li>
+                </ul>
+                <div class="mt-4 text-sm text-purple-400 font-medium">
+                    <i class="fas fa-plug mr-2"></i>Protocolos: SNMP, Modbus
+                </div>
+            </div>
+
+            <!-- Geradores -->
+            <div class="infra-card rounded-xl p-6">
+                <div class="infra-icon w-14 h-14 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-industry text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-cyan-400">Geradores de Energia</h3>
+                <ul class="text-gray-300 space-y-2 mb-4">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                        <span>Monitoramento remoto de combustível</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                        <span>Horímetro e histórico de acionamento</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                        <span>Integração com automação predial</span>
+                    </li>
+                </ul>
+                <div class="mt-4 text-sm text-purple-400 font-medium">
+                    <i class="fas fa-bolt mr-2"></i>Alertas: Falha no acionamento
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diferenciais -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-gray-800/50 rounded-xl border border-gray-700">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4 text-cyan-400 neon-text">Tecnologia Apex para Infraestrutura</h2>
+            <p class="text-gray-300 max-w-3xl mx-auto">Soluções integradas com visibilidade completa do seu datacenter</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="text-center p-6">
+                <div class="w-20 h-20 bg-gradient-to-r from-purple-600 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-purple-500/30">
+                    <i class="fas fa-robot text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Automação Inteligente</h3>
+                <p class="text-gray-300">Resposta automática a incidentes com base em regras pré-definidas e machine learning</p>
+            </div>
+            <div class="text-center p-6">
+                <div class="w-20 h-20 bg-gradient-to-r from-purple-600 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-purple-500/30">
+                    <i class="fas fa-project-diagram text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Mapa de Dependências</h3>
+                <p class="text-gray-300">Visualização completa do impacto entre dispositivos para rápida resolução de problemas</p>
+            </div>
+            <div class="text-center p-6">
+                <div class="w-20 h-20 bg-gradient-to-r from-purple-600 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-purple-500/30">
+                    <i class="fas fa-shield-alt text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Segurança Integrada</h3>
+                <p class="text-gray-300">Monitoramento contínuo de ameaças e vulnerabilidades na infraestrutura</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-6">Pronto para transformar seu monitoramento?</h2>
+        <a href="../index.html#contact" class="inline-block px-8 py-4 rounded-md font-medium bg-gradient-to-r from-purple-600 to-cyan-500 text-white hover:from-purple-700 hover:to-cyan-600 transition shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 text-lg">
+            Solicitar Demonstração Personalizada
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-12 px-4 sm:px-6 lg:px-8 border-t border-purple-900">
+        <!-- ... (conteúdo igual ao index.html) ... -->
+    </footer>
+
+    <script src="../forms.js"></script>
+</body>
+</html>
