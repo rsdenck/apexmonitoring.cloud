@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoramento Cloud | Apex Monitoring</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="../general.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .cloud-card {
+            background: linear-gradient(145deg, rgba(26, 32, 44, 0.8), rgba(17, 24, 39, 0.8));
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .cloud-card:hover {
+            border-color: rgba(34, 211, 238, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -5px rgba(157, 78, 221, 0.3);
+        }
+        .virt-icon {
+            background: linear-gradient(135deg, #9d4edd, #22d3ee);
+            box-shadow: 0 4px 15px rgba(157, 78, 221, 0.4);
+        }
+        .virt-badge {
+            background: rgba(157, 78, 221, 0.1);
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+    <!-- Navbar -->
+    <nav class="bg-gray-800 bg-opacity-90 backdrop-filter backdrop-blur-lg fixed w-full z-50 border-b border-purple-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <img src="../assets/logo-apex.svg" alt="Apex Monitoring" class="h-8 mr-2">
+                        <span class="text-2xl font-bold bg-gradient-to-r from-purple-500 to-cyan-400 bg-clip-text text-transparent neon-text hidden sm:inline">MONITORING</span>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="../index.html" class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-purple-900/30 transition hover:text-cyan-300">Home</a>
+                            <a href="../index.html#services" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-cyan-300 hover:bg-purple-900/30 transition">Serviços</a>
+                            <a href="../index.html#contact" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-cyan-300 hover:bg-purple-900/30 transition">Contato</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="../index.html#contact" class="hidden md:block px-4 py-2 rounded-md text-sm font-medium bg-gradient-to-r from-purple-600 to-cyan-500 text-white hover:from-purple-700 hover:to-cyan-600 transition shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40">Demonstração</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                <span class="bg-gradient-to-r from-purple-500 to-cyan-400 bg-clip-text text-transparent neon-text">Monitoramento Cloud</span>
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                Visibilidade completa em seus ambientes virtualizados e plataformas de cloud privada
+            </p>
+        </div>
+    </section>
+
+    <!-- Plataformas Monitoradas -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Proxmox VE -->
+            <div class="cloud-card rounded-xl p-6">
+                <div class="flex items-start justify-between">
+                    <div class="virt-icon w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-server text-xl text-white"></i>
+                    </div>
+                    <span class="virt-badge text-xs px-3 py-1 rounded-full">VIRTUALIZAÇÃO</span>
+                </div>
+                <h3 class="text-xl font-bold my-4 text-purple-400">Proxmox VE</h3>
+                <ul class="text-gray-300 space-y-2 text-sm">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Monitoramento de clusters PVE</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Análise de VMs e LXC containers</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Storage (ZFS, Ceph, LVM)</span>
+                    </li>
+                </ul>
+                <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                    <span class="text-xs text-purple-300">HA Clusters</span>
+                    <span class="text-xs bg-gray-700 px-2 py-1 rounded">v7.0+</span>
+                </div>
+            </div>
+
+            <!-- Proxmox Backup Server -->
+            <div class="cloud-card rounded-xl p-6">
+                <div class="flex items-start justify-between">
+                    <div class="virt-icon w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-database text-xl text-white"></i>
+                    </div>
+                    <span class="virt-badge text-xs px-3 py-1 rounded-full">BACKUP</span>
+                </div>
+                <h3 class="text-xl font-bold my-4 text-purple-400">Proxmox Backup Server</h3>
+                <ul class="text-gray-300 space-y-2 text-sm">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Monitoramento de jobs de backup</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Verificação de integridade</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Deduplicação e compressão</span>
+                    </li>
+                </ul>
+                <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                    <span class="text-xs text-purple-300">Incremental</span>
+                    <span class="text-xs bg-gray-700 px-2 py-1 rounded">v2.0+</span>
+                </div>
+            </div>
+
+            <!-- VMware ESXi -->
+            <div class="cloud-card rounded-xl p-6">
+                <div class="flex items-start justify-between">
+                    <div class="virt-icon w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-cloud text-xl text-white"></i>
+                    </div>
+                    <span class="virt-badge text-xs px-3 py-1 rounded-full">VIRTUALIZAÇÃO</span>
+                </div>
+                <h3 class="text-xl font-bold my-4 text-purple-400">VMware ESXi</h3>
+                <ul class="text-gray-300 space-y-2 text-sm">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Monitoramento de hosts físicos</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Análise de VMs e recursos</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>vMotion e DRS</span>
+                    </li>
+                </ul>
+                <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                    <span class="text-xs text-purple-300">vSphere</span>
+                    <span class="text-xs bg-gray-700 px-2 py-1 rounded">6.7+</span>
+                </div>
+            </div>
+
+            <!-- vCenter -->
+            <div class="cloud-card rounded-xl p-6">
+                <div class="flex items-start justify-between">
+                    <div class="virt-icon w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-network-wired text-xl text-white"></i>
+                    </div>
+                    <span class="virt-badge text-xs px-3 py-1 rounded-full">GERENCIAMENTO</span>
+                </div>
+                <h3 class="text-xl font-bold my-4 text-purple-400">vCenter Server</h3>
+                <ul class="text-gray-300 space-y-2 text-sm">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Monitoramento centralizado</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Alertas de performance</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Inventário de recursos</span>
+                    </li>
+                </ul>
+                <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                    <span class="text-xs text-purple-300">Multi-cluster</span>
+                    <span class="text-xs bg-gray-700 px-2 py-1 rounded">7.0+</span>
+                </div>
+            </div>
+
+            <!-- Nutanix -->
+            <div class="cloud-card rounded-xl p-6">
+                <div class="flex items-start justify-between">
+                    <div class="virt-icon w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-boxes text-xl text-white"></i>
+                    </div>
+                    <span class="virt-badge text-xs px-3 py-1 rounded-full">HCI</span>
+                </div>
+                <h3 class="text-xl font-bold my-4 text-purple-400">Nutanix</h3>
+                <ul class="text-gray-300 space-y-2 text-sm">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Monitoramento de clusters HCI</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Prism Central e Element</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>AOS e AHV</span>
+                    </li>
+                </ul>
+                <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                    <span class="text-xs text-purple-300">Acropolis</span>
+                    <span class="text-xs bg-gray-700 px-2 py-1 rounded">5.20+</span>
+                </div>
+            </div>
+
+            <!-- Hyper-V -->
+            <div class="cloud-card rounded-xl p-6">
+                <div class="flex items-start justify-between">
+                    <div class="virt-icon w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fab fa-microsoft text-xl text-white"></i>
+                    </div>
+                    <span class="virt-badge text-xs px-3 py-1 rounded-full">VIRTUALIZAÇÃO</span>
+                </div>
+                <h3 class="text-xl font-bold my-4 text-purple-400">Hyper-V</h3>
+                <ul class="text-gray-300 space-y-2 text-sm">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Monitoramento de hosts</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Cluster Shared Volumes</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-400 mr-2 mt-1"></i>
+                        <span>Live Migration</span>
+                    </li>
+                </ul>
+                <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                    <span class="text-xs text-purple-300">Failover Cluster</span>
+                    <span class="text-xs bg-gray-700 px-2 py-1 rounded">2019+</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recursos de Monitoramento -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-gray-800/50 rounded-xl border border-gray-700 mt-12">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4 text-cyan-400 neon-text">Recursos Avançados</h2>
+            <p class="text-gray-300 max-w-3xl mx-auto">Capacidades exclusivas para ambientes virtualizados</p>
+        </div>
+        
+        <div class="feature-grid">
+            <div class="p-4">
+                <div class="flex items-center mb-3">
+                    <div class="virt-icon w-10 h-10 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-chart-network text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold">Topologia de Rede</h3>
+                </div>
+                <p class="text-gray-300 text-sm">Visualização completa da interconexão entre VMs, hosts e storage</p>
+            </div>
+            
+            <div class="p-4">
+                <div class="flex items-center mb-3">
+                    <div class="virt-icon w-10 h-10 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-bolt text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold">Live Migration</h3>
+                </div>
+                <p class="text-gray-300 text-sm">Monitoramento de vMotion, Live Migration e DRS</p>
+            </div>
+            
+            <div class="p-4">
+                <div class="flex items-center mb-3">
+                    <div class="virt-icon w-10 h-10 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-memory text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold">Oversubscription</h3>
+                </div>
+                <p class="text-gray-300 text-sm">Alertas de overcommit de CPU, memória e storage</p>
+            </div>
+            
+            <div class="p-4">
+                <div class="flex items-center mb-3">
+                    <div class="virt-icon w-10 h-10 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-hdd text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold">Storage Performance</h3>
+                </div>
+                <p class="text-gray-300 text-sm">Latência, IOPS e throughput de datastores</p>
+            </div>
+            
+            <div class="p-4">
+                <div class="flex items-center mb-3">
+                    <div class="virt-icon w-10 h-10 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-project-diagram text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold">DR e Replicação</h3>
+                </div>
+                <p class="text-gray-300 text-sm">Monitoramento de SRM, Zerto e replicação nativa</p>
+            </div>
+            
+            <div class="p-4">
+                <div class="flex items-center mb-3">
+                    <div class="virt-icon w-10 h-10 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-shield-alt text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold">Segurança</h3>
+                </div>
+                <p class="text-gray-300 text-sm">Configurações de hardening e compliance</p>
+            </div>
+            
+            <div class="p-4">
+                <div class="flex items-center mb-3">
+                    <div class="virt-icon w-10 h-10 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-cloud-upload-alt text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold">Cloud Stack</h3>
+                </div>
+                <p class="text-gray-300 text-sm">Apache CloudStack e OpenStack integrados</p>
+            </div>
+            
+            <div class="p-4">
+                <div class="flex items-center mb-3">
+                    <div class="virt-icon w-10 h-10 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-tachometer-alt text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold">Capacity Planning</h3>
+                </div>
+                <p class="text-gray-300 text-sm">Previsão de crescimento e otimização</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Métricas Chave -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4 text-purple-400 neon-text">Métricas Essenciais</h2>
+            <p class="text-gray-300 max-w-3xl mx-auto">Indicadores críticos para operação de ambientes virtuais</p>
+        </div>
+        <div class="grid md:grid-cols-4 gap-6">
+            <div class="text-center p-6 bg-gray-800/50 rounded-xl border border-gray-700">
+                <div class="text-4xl font-bold mb-3 text-cyan-400">99.999%</div>
+                <p class="text-gray-300 text-sm">Disponibilidade VMs</p>
+            </div>
+            <div class="text-center p-6 bg-gray-800/50 rounded-xl border border-gray-700">
+                <div class="text-4xl font-bold mb-3 text-purple-400">< 1ms</div>
+                <p class="text-gray-300 text-sm">Latência Storage</p>
+            </div>
+            <div class="text-center p-6 bg-gray-800/50 rounded-xl border border-gray-700">
+                <div class="text-4xl font-bold mb-3 text-cyan-400">100%</div>
+                <p class="text-gray-300 text-sm">Sucesso Backup</p>
+            </div>
+            <div class="text-center p-6 bg-gray-800/50 rounded-xl border border-gray-700">
+                <div class="text-4xl font-bold mb-3 text-purple-400">0</div>
+                <p class="text-gray-300 text-sm">Tempo Inatividade</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Especializado -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
+        <div class="bg-gradient-to-r from-purple-900/40 to-cyan-900/40 rounded-2xl p-12 border border-gray-700">
+            <h2 class="text-3xl font-bold mb-6">Monitoramento Profissional para Sua Cloud</h2>
+            <p class="text-gray-300 max-w-2xl mx-auto mb-8">Nossa equipe especializada em virtualização oferece insights profundos para otimizar seu ambiente</p>
+            <a href="../index.html#contact" class="inline-block px-8 py-4 rounded-md font-medium bg-gradient-to-r from-purple-600 to-cyan-500 text-white hover:from-purple-700 hover:to-cyan-600 transition shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 text-lg">
+                Solicitar Avaliação
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-12 px-4 sm:px-6 lg:px-8 border-t border-purple-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <img src="../assets/logo-apex.svg" alt="Apex Monitoring" class="h-8 mb-4">
+                    <p class="text-gray-300 text-sm">Soluções avançadas de monitoramento para infraestruturas críticas.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-purple-300">Serviços</h3>
+                    <ul class="space-y-2">
+                        <li><a href="performance-aplicacoes.html" class="text-gray-300 hover:text-cyan-300 text-sm transition">Performance de Aplicações</a></li>
+                        <li><a href="monitoramento-cloud.html" class="text-gray-300 hover:text-cyan-300 text-sm transition">Monitoramento Cloud</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-cyan-300 text-sm transition">Monitoramento de Rede</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-purple-300">Links Rápidos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="../index.html" class="text-gray-300 hover:text-cyan-300 text-sm transition">Home</a></li>
+                        <li><a href="../index.html#services" class="text-gray-300 hover:text-cyan-300 text-sm transition">Serviços</a></li>
+                        <li><a href="../index.html#contact" class="text-gray-300 hover:text-cyan-300 text-sm transition">Contato</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-purple-300">Contato</h3>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li class="flex items-center"><i class="fas fa-envelope mr-2 text-cyan-400"></i> contato@apexmonitoring.com</li>
+                        <li class="flex items-center"><i class="fas fa-phone-alt mr-2 text-cyan-400"></i> +55 (11) 1234-5678</li>
+                        <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-cyan-400"></i> São Paulo, Brasil</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2023 Apex Monitoring. Todos os direitos reservados.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-cyan-300 transition"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-cyan-300 transition"><i class="fab fa-github"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-cyan-300 transition"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../forms.js"></script>
+</body>
+</html>
